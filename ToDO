@@ -1,0 +1,24 @@
+Sensorboard
+	I2C
+	Stabile Referenzspannung
+	
+	Gyroskop
+	G-Sensor
+	Kompassmodul
+	
+	evtl
+	   Luftdruck
+	   Bodenabstand
+
+	Batteriestatus
+
+Raspberry Pi
+	I2C
+	Socketverbindung
+		WLAN
+		UMTS
+
+BLC  Atmega8
+	I2C
+	Quarz 20MHz
+	höhere Leistung
