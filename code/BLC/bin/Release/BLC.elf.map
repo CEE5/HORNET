@@ -2,6 +2,13 @@ Archive member included because of file (symbol)
 
 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
                               /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o (exit)
+/usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+                              obj/Release/main.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+aktPos              0x1               obj/Release/main.o
 
 Memory Configuration
 
@@ -114,7 +121,7 @@ LOAD /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x18e
+.text           0x0000000000000000      0x218
  *(.vectors)
  .vectors       0x0000000000000000       0x26 /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
                 0x0000000000000000                __vectors
@@ -152,6 +159,8 @@ LOAD /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a
  *(.init3)
  *(.init3)
  *(.init4)
+ .init4         0x0000000000000032       0x10 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+                0x0000000000000032                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -162,56 +171,69 @@ LOAD /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000000000000032        0x4 /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
+ .init9         0x0000000000000042        0x4 /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
  *(.init9)
  *(.text)
- .text          0x0000000000000036        0x2 /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
-                0x0000000000000036                __vector_1
-                0x0000000000000036                __vector_12
-                0x0000000000000036                __bad_interrupt
-                0x0000000000000036                __vector_6
-                0x0000000000000036                __vector_3
-                0x0000000000000036                __vector_11
-                0x0000000000000036                __vector_13
-                0x0000000000000036                __vector_17
-                0x0000000000000036                __vector_7
-                0x0000000000000036                __vector_5
-                0x0000000000000036                __vector_4
-                0x0000000000000036                __vector_9
-                0x0000000000000036                __vector_2
-                0x0000000000000036                __vector_15
-                0x0000000000000036                __vector_8
-                0x0000000000000036                __vector_14
-                0x0000000000000036                __vector_10
-                0x0000000000000036                __vector_16
-                0x0000000000000036                __vector_18
- .text          0x0000000000000038      0x14c obj/Release/main.o
-                0x000000000000003e                setLED
-                0x0000000000000066                error
-                0x0000000000000090                setMotor
-                0x00000000000000ba                initPorts
-                0x00000000000000ca                test
- .text          0x0000000000000184        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
-                0x0000000000000184                . = ALIGN (0x2)
+ .text          0x0000000000000046        0x2 /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
+                0x0000000000000046                __vector_1
+                0x0000000000000046                __vector_12
+                0x0000000000000046                __bad_interrupt
+                0x0000000000000046                __vector_6
+                0x0000000000000046                __vector_3
+                0x0000000000000046                __vector_11
+                0x0000000000000046                __vector_13
+                0x0000000000000046                __vector_17
+                0x0000000000000046                __vector_7
+                0x0000000000000046                __vector_5
+                0x0000000000000046                __vector_4
+                0x0000000000000046                __vector_9
+                0x0000000000000046                __vector_2
+                0x0000000000000046                __vector_15
+                0x0000000000000046                __vector_8
+                0x0000000000000046                __vector_14
+                0x0000000000000046                __vector_10
+                0x0000000000000046                __vector_18
+ .text          0x0000000000000048      0x12e obj/Release/main.o
+                0x000000000000004e                setLED
+                0x0000000000000076                error
+                0x00000000000000a0                setMotor
+                0x00000000000000c8                setMUX
+                0x00000000000000f4                init_ANALOG_COMPARATOR
+                0x0000000000000106                __vector_16
+                0x0000000000000166                initPorts
+ .text          0x0000000000000176        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+ .text          0x0000000000000176        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+                0x0000000000000176                . = ALIGN (0x2)
  *(.text.*)
- .text.startup  0x0000000000000184        0x6 obj/Release/main.o
-                0x0000000000000184                main
+ .text.startup  0x0000000000000176       0x9e obj/Release/main.o
+                0x0000000000000176                main
  .text.libgcc.mul
-                0x000000000000018a        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
  .text.libgcc.div
-                0x000000000000018a        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
- .text.libgcc   0x000000000000018a        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+ .text.libgcc   0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x000000000000018a        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x000000000000018a        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x000000000000018a        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
-                0x000000000000018a                . = ALIGN (0x2)
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+ .text.libgcc.mul
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+                0x0000000000000214                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000000000000018a        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
-                0x000000000000018a                exit
-                0x000000000000018a                _exit
+ .fini9         0x0000000000000214        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+                0x0000000000000214                exit
+                0x0000000000000214                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -230,16 +252,17 @@ LOAD /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000000000000018a        0x4 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+ .fini0         0x0000000000000214        0x4 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
  *(.fini0)
-                0x000000000000018e                _etext = .
+                0x0000000000000218                _etext = .
 
-.data           0x0000000000800060        0x0 load address 0x000000000000018e
+.data           0x0000000000800060        0x0 load address 0x0000000000000218
                 0x0000000000800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800060        0x0 /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
  .data          0x0000000000800060        0x0 obj/Release/main.o
  .data          0x0000000000800060        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+ .data          0x0000000000800060        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
@@ -248,24 +271,27 @@ LOAD /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a
                 0x0000000000800060                _edata = .
                 0x0000000000800060                PROVIDE (__data_end, .)
 
-.bss            0x0000000000800060        0x0
+.bss            0x0000000000800060        0x1
                 0x0000000000800060                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x0000000000800060        0x0 /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
  .bss           0x0000000000800060        0x0 obj/Release/main.o
  .bss           0x0000000000800060        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+ .bss           0x0000000000800060        0x0 /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
  *(.bss*)
  *(COMMON)
-                0x0000000000800060                PROVIDE (__bss_end, .)
-                0x000000000000018e                __data_load_start = LOADADDR (.data)
-                0x000000000000018e                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0000000000800060        0x1 obj/Release/main.o
+                0x0000000000800060                aktPos
+                0x0000000000800061                PROVIDE (__bss_end, .)
+                0x0000000000000218                __data_load_start = LOADADDR (.data)
+                0x0000000000000218                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000800060        0x0
-                0x0000000000800060                PROVIDE (__noinit_start, .)
+.noinit         0x0000000000800061        0x0
+                0x0000000000800061                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0000000000800060                PROVIDE (__noinit_end, .)
-                0x0000000000800060                _end = .
-                0x0000000000800060                PROVIDE (__heap_start, .)
+                0x0000000000800061                PROVIDE (__noinit_end, .)
+                0x0000000000800061                _end = .
+                0x0000000000800061                PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)
@@ -354,6 +380,10 @@ Cross Reference Table
 
 Symbol                                            File
 __bad_interrupt                                   /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
+__bss_end                                         /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+__bss_start                                       /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+__do_clear_bss                                    /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_clear_bss.o)
+                                                  obj/Release/main.o
 __heap_end                                        /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 __init                                            /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 __stack                                           /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
@@ -364,7 +394,8 @@ __vector_12                                       /usr/lib/gcc/avr/4.7.0/../../.
 __vector_13                                       /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 __vector_14                                       /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 __vector_15                                       /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
-__vector_16                                       /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
+__vector_16                                       obj/Release/main.o
+                                                  /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 __vector_17                                       /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 __vector_18                                       /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 __vector_2                                        /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
@@ -378,12 +409,14 @@ __vector_9                                        /usr/lib/gcc/avr/4.7.0/../../.
 __vector_default                                  /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 __vectors                                         /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 _exit                                             /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
+aktPos                                            obj/Release/main.o
 error                                             obj/Release/main.o
 exit                                              /usr/lib/gcc/avr/4.7.0/avr4/libgcc.a(_exit.o)
                                                   /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 initPorts                                         obj/Release/main.o
+init_ANALOG_COMPARATOR                            obj/Release/main.o
 main                                              obj/Release/main.o
                                                   /usr/lib/gcc/avr/4.7.0/../../../avr/lib/avr4/crtm8.o
 setLED                                            obj/Release/main.o
+setMUX                                            obj/Release/main.o
 setMotor                                          obj/Release/main.o
-test                                              obj/Release/main.o

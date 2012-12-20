@@ -3,37 +3,39 @@ bin/Release/BLC.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000018e  00000000  00000000  00000054  2**1
+  0 .text         00000218  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .stab         000006cc  00000000  00000000  000001e4  2**2
+  1 .bss          00000001  00800060  00800060  0000028c  2**0
+                  ALLOC
+  2 .stab         000006cc  00000000  00000000  0000028c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  2 .stabstr      00000054  00000000  00000000  000008b0  2**0
+  3 .stabstr      00000054  00000000  00000000  00000958  2**0
                   CONTENTS, READONLY, DEBUGGING
-  3 .comment      00000011  00000000  00000000  00000904  2**0
+  4 .comment      00000011  00000000  00000000  000009ac  2**0
                   CONTENTS, READONLY
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
-   2:	19 c0       	rjmp	.+50     	; 0x36 <__bad_interrupt>
-   4:	18 c0       	rjmp	.+48     	; 0x36 <__bad_interrupt>
-   6:	17 c0       	rjmp	.+46     	; 0x36 <__bad_interrupt>
-   8:	16 c0       	rjmp	.+44     	; 0x36 <__bad_interrupt>
-   a:	15 c0       	rjmp	.+42     	; 0x36 <__bad_interrupt>
-   c:	14 c0       	rjmp	.+40     	; 0x36 <__bad_interrupt>
-   e:	13 c0       	rjmp	.+38     	; 0x36 <__bad_interrupt>
-  10:	12 c0       	rjmp	.+36     	; 0x36 <__bad_interrupt>
-  12:	11 c0       	rjmp	.+34     	; 0x36 <__bad_interrupt>
-  14:	10 c0       	rjmp	.+32     	; 0x36 <__bad_interrupt>
-  16:	0f c0       	rjmp	.+30     	; 0x36 <__bad_interrupt>
-  18:	0e c0       	rjmp	.+28     	; 0x36 <__bad_interrupt>
-  1a:	0d c0       	rjmp	.+26     	; 0x36 <__bad_interrupt>
-  1c:	0c c0       	rjmp	.+24     	; 0x36 <__bad_interrupt>
-  1e:	0b c0       	rjmp	.+22     	; 0x36 <__bad_interrupt>
-  20:	0a c0       	rjmp	.+20     	; 0x36 <__bad_interrupt>
-  22:	09 c0       	rjmp	.+18     	; 0x36 <__bad_interrupt>
-  24:	08 c0       	rjmp	.+16     	; 0x36 <__bad_interrupt>
+   2:	21 c0       	rjmp	.+66     	; 0x46 <__bad_interrupt>
+   4:	20 c0       	rjmp	.+64     	; 0x46 <__bad_interrupt>
+   6:	1f c0       	rjmp	.+62     	; 0x46 <__bad_interrupt>
+   8:	1e c0       	rjmp	.+60     	; 0x46 <__bad_interrupt>
+   a:	1d c0       	rjmp	.+58     	; 0x46 <__bad_interrupt>
+   c:	1c c0       	rjmp	.+56     	; 0x46 <__bad_interrupt>
+   e:	1b c0       	rjmp	.+54     	; 0x46 <__bad_interrupt>
+  10:	1a c0       	rjmp	.+52     	; 0x46 <__bad_interrupt>
+  12:	19 c0       	rjmp	.+50     	; 0x46 <__bad_interrupt>
+  14:	18 c0       	rjmp	.+48     	; 0x46 <__bad_interrupt>
+  16:	17 c0       	rjmp	.+46     	; 0x46 <__bad_interrupt>
+  18:	16 c0       	rjmp	.+44     	; 0x46 <__bad_interrupt>
+  1a:	15 c0       	rjmp	.+42     	; 0x46 <__bad_interrupt>
+  1c:	14 c0       	rjmp	.+40     	; 0x46 <__bad_interrupt>
+  1e:	13 c0       	rjmp	.+38     	; 0x46 <__bad_interrupt>
+  20:	72 c0       	rjmp	.+228    	; 0x106 <__vector_16>
+  22:	11 c0       	rjmp	.+34     	; 0x46 <__bad_interrupt>
+  24:	10 c0       	rjmp	.+32     	; 0x46 <__bad_interrupt>
 
 00000026 <__ctors_end>:
   26:	11 24       	eor	r1, r1
@@ -42,197 +44,270 @@ Disassembly of section .text:
   2c:	d4 e0       	ldi	r29, 0x04	; 4
   2e:	de bf       	out	0x3e, r29	; 62
   30:	cd bf       	out	0x3d, r28	; 61
-  32:	a8 d0       	rcall	.+336    	; 0x184 <main>
-  34:	aa c0       	rjmp	.+340    	; 0x18a <_exit>
 
-00000036 <__bad_interrupt>:
-  36:	e4 cf       	rjmp	.-56     	; 0x0 <__vectors>
+00000032 <__do_clear_bss>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	01 c0       	rjmp	.+2      	; 0x3c <.do_clear_bss_start>
 
-00000038 <setLED.part.0>:
-  38:	c0 98       	cbi	0x18, 0	; 24
-  3a:	c1 9a       	sbi	0x18, 1	; 24
-  3c:	08 95       	ret
+0000003a <.do_clear_bss_loop>:
+  3a:	1d 92       	st	X+, r1
 
-0000003e <setLED>:
-  3e:	81 30       	cpi	r24, 0x01	; 1
-  40:	49 f0       	breq	.+18     	; 0x54 <__SREG__+0x15>
-  42:	28 f0       	brcs	.+10     	; 0x4e <__SREG__+0xf>
-  44:	82 30       	cpi	r24, 0x02	; 2
-  46:	39 f0       	breq	.+14     	; 0x56 <__SREG__+0x17>
-  48:	83 30       	cpi	r24, 0x03	; 3
-  4a:	61 f4       	brne	.+24     	; 0x64 <__SREG__+0x25>
-  4c:	07 c0       	rjmp	.+14     	; 0x5c <__SREG__+0x1d>
-  4e:	88 b3       	in	r24, 0x18	; 24
-  50:	8c 7f       	andi	r24, 0xFC	; 252
-  52:	06 c0       	rjmp	.+12     	; 0x60 <__SREG__+0x21>
-  54:	f1 cf       	rjmp	.-30     	; 0x38 <setLED.part.0>
-  56:	c1 98       	cbi	0x18, 1	; 24
-  58:	c0 9a       	sbi	0x18, 0	; 24
-  5a:	08 95       	ret
-  5c:	88 b3       	in	r24, 0x18	; 24
-  5e:	83 60       	ori	r24, 0x03	; 3
-  60:	88 bb       	out	0x18, r24	; 24
-  62:	08 95       	ret
-  64:	00 c0       	rjmp	.+0      	; 0x66 <error>
+0000003c <.do_clear_bss_start>:
+  3c:	a1 36       	cpi	r26, 0x61	; 97
+  3e:	b1 07       	cpc	r27, r17
+  40:	e1 f7       	brne	.-8      	; 0x3a <.do_clear_bss_loop>
+  42:	99 d0       	rcall	.+306    	; 0x176 <main>
+  44:	e7 c0       	rjmp	.+462    	; 0x214 <_exit>
 
-00000066 <error>:
-  66:	82 b3       	in	r24, 0x12	; 18
-  68:	85 74       	andi	r24, 0x45	; 69
-  6a:	82 bb       	out	0x12, r24	; 18
-  6c:	ab 98       	cbi	0x15, 3	; 21
-  6e:	81 b3       	in	r24, 0x11	; 17
-  70:	85 74       	andi	r24, 0x45	; 69
-  72:	81 bb       	out	0x11, r24	; 17
-  74:	a3 98       	cbi	0x14, 3	; 20
-  76:	c0 e0       	ldi	r28, 0x00	; 0
-  78:	8c 2f       	mov	r24, r28
-  7a:	e1 df       	rcall	.-62     	; 0x3e <setLED>
-  7c:	8f e3       	ldi	r24, 0x3F	; 63
-  7e:	9c e9       	ldi	r25, 0x9C	; 156
-  80:	01 97       	sbiw	r24, 0x01	; 1
-  82:	f1 f7       	brne	.-4      	; 0x80 <error+0x1a>
-  84:	00 c0       	rjmp	.+0      	; 0x86 <error+0x20>
-  86:	00 00       	nop
-  88:	cf 5f       	subi	r28, 0xFF	; 255
-  8a:	c4 30       	cpi	r28, 0x04	; 4
-  8c:	a8 f3       	brcs	.-22     	; 0x78 <error+0x12>
-  8e:	f3 cf       	rjmp	.-26     	; 0x76 <error+0x10>
+00000046 <__bad_interrupt>:
+  46:	dc cf       	rjmp	.-72     	; 0x0 <__vectors>
 
-00000090 <setMotor>:
-  90:	92 b3       	in	r25, 0x12	; 18
-  92:	95 74       	andi	r25, 0x45	; 69
-  94:	92 bb       	out	0x12, r25	; 18
-  96:	ab 98       	cbi	0x15, 3	; 21
-  98:	81 30       	cpi	r24, 0x01	; 1
-  9a:	39 f0       	breq	.+14     	; 0xaa <setMotor+0x1a>
-  9c:	18 f0       	brcs	.+6      	; 0xa4 <setMotor+0x14>
-  9e:	82 30       	cpi	r24, 0x02	; 2
-  a0:	59 f4       	brne	.+22     	; 0xb8 <setMotor+0x28>
-  a2:	07 c0       	rjmp	.+14     	; 0xb2 <setMotor+0x22>
-  a4:	82 b3       	in	r24, 0x12	; 18
-  a6:	82 61       	ori	r24, 0x12	; 18
-  a8:	02 c0       	rjmp	.+4      	; 0xae <setMotor+0x1e>
-  aa:	82 b3       	in	r24, 0x12	; 18
-  ac:	80 6a       	ori	r24, 0xA0	; 160
-  ae:	82 bb       	out	0x12, r24	; 18
-  b0:	08 95       	ret
-  b2:	ab 9a       	sbi	0x15, 3	; 21
-  b4:	93 9a       	sbi	0x12, 3	; 18
-  b6:	08 95       	ret
-  b8:	d6 df       	rcall	.-84     	; 0x66 <error>
+00000048 <setLED.part.0>:
+  48:	c0 98       	cbi	0x18, 0	; 24
+  4a:	c1 9a       	sbi	0x18, 1	; 24
+  4c:	08 95       	ret
 
-000000ba <initPorts>:
-  ba:	81 b3       	in	r24, 0x11	; 17
-  bc:	8a 6b       	ori	r24, 0xBA	; 186
-  be:	81 bb       	out	0x11, r24	; 17
-  c0:	a3 9a       	sbi	0x14, 3	; 20
-  c2:	87 b3       	in	r24, 0x17	; 23
-  c4:	83 60       	ori	r24, 0x03	; 3
-  c6:	87 bb       	out	0x17, r24	; 23
-  c8:	08 95       	ret
+0000004e <setLED>:
+  4e:	81 30       	cpi	r24, 0x01	; 1
+  50:	49 f0       	breq	.+18     	; 0x64 <setLED+0x16>
+  52:	28 f0       	brcs	.+10     	; 0x5e <setLED+0x10>
+  54:	82 30       	cpi	r24, 0x02	; 2
+  56:	39 f0       	breq	.+14     	; 0x66 <setLED+0x18>
+  58:	83 30       	cpi	r24, 0x03	; 3
+  5a:	61 f4       	brne	.+24     	; 0x74 <setLED+0x26>
+  5c:	07 c0       	rjmp	.+14     	; 0x6c <setLED+0x1e>
+  5e:	88 b3       	in	r24, 0x18	; 24
+  60:	8c 7f       	andi	r24, 0xFC	; 252
+  62:	06 c0       	rjmp	.+12     	; 0x70 <setLED+0x22>
+  64:	f1 cf       	rjmp	.-30     	; 0x48 <setLED.part.0>
+  66:	c1 98       	cbi	0x18, 1	; 24
+  68:	c0 9a       	sbi	0x18, 0	; 24
+  6a:	08 95       	ret
+  6c:	88 b3       	in	r24, 0x18	; 24
+  6e:	83 60       	ori	r24, 0x03	; 3
+  70:	88 bb       	out	0x18, r24	; 24
+  72:	08 95       	ret
+  74:	00 c0       	rjmp	.+0      	; 0x76 <error>
 
-000000ca <test>:
-  ca:	80 e0       	ldi	r24, 0x00	; 0
-  cc:	b8 df       	rcall	.-144    	; 0x3e <setLED>
-  ce:	2f ef       	ldi	r18, 0xFF	; 255
-  d0:	85 ea       	ldi	r24, 0xA5	; 165
-  d2:	9e e0       	ldi	r25, 0x0E	; 14
-  d4:	21 50       	subi	r18, 0x01	; 1
-  d6:	80 40       	sbci	r24, 0x00	; 0
-  d8:	90 40       	sbci	r25, 0x00	; 0
-  da:	e1 f7       	brne	.-8      	; 0xd4 <test+0xa>
-  dc:	00 c0       	rjmp	.+0      	; 0xde <test+0x14>
-  de:	00 00       	nop
-  e0:	ab df       	rcall	.-170    	; 0x38 <setLED.part.0>
-  e2:	2f ef       	ldi	r18, 0xFF	; 255
-  e4:	85 ea       	ldi	r24, 0xA5	; 165
-  e6:	9e e0       	ldi	r25, 0x0E	; 14
-  e8:	21 50       	subi	r18, 0x01	; 1
-  ea:	80 40       	sbci	r24, 0x00	; 0
-  ec:	90 40       	sbci	r25, 0x00	; 0
-  ee:	e1 f7       	brne	.-8      	; 0xe8 <test+0x1e>
-  f0:	00 c0       	rjmp	.+0      	; 0xf2 <test+0x28>
-  f2:	00 00       	nop
-  f4:	82 e0       	ldi	r24, 0x02	; 2
-  f6:	a3 df       	rcall	.-186    	; 0x3e <setLED>
-  f8:	2f ef       	ldi	r18, 0xFF	; 255
-  fa:	85 ea       	ldi	r24, 0xA5	; 165
-  fc:	9e e0       	ldi	r25, 0x0E	; 14
-  fe:	21 50       	subi	r18, 0x01	; 1
- 100:	80 40       	sbci	r24, 0x00	; 0
- 102:	90 40       	sbci	r25, 0x00	; 0
- 104:	e1 f7       	brne	.-8      	; 0xfe <test+0x34>
- 106:	00 c0       	rjmp	.+0      	; 0x108 <test+0x3e>
- 108:	00 00       	nop
- 10a:	83 e0       	ldi	r24, 0x03	; 3
- 10c:	98 df       	rcall	.-208    	; 0x3e <setLED>
- 10e:	2f ef       	ldi	r18, 0xFF	; 255
- 110:	8f e0       	ldi	r24, 0x0F	; 15
- 112:	97 e2       	ldi	r25, 0x27	; 39
- 114:	21 50       	subi	r18, 0x01	; 1
- 116:	80 40       	sbci	r24, 0x00	; 0
- 118:	90 40       	sbci	r25, 0x00	; 0
- 11a:	e1 f7       	brne	.-8      	; 0x114 <test+0x4a>
- 11c:	00 c0       	rjmp	.+0      	; 0x11e <test+0x54>
- 11e:	00 00       	nop
- 120:	80 e0       	ldi	r24, 0x00	; 0
- 122:	8d df       	rcall	.-230    	; 0x3e <setLED>
- 124:	80 e0       	ldi	r24, 0x00	; 0
- 126:	b4 df       	rcall	.-152    	; 0x90 <setMotor>
- 128:	2f ef       	ldi	r18, 0xFF	; 255
- 12a:	85 ea       	ldi	r24, 0xA5	; 165
- 12c:	9e e0       	ldi	r25, 0x0E	; 14
- 12e:	21 50       	subi	r18, 0x01	; 1
- 130:	80 40       	sbci	r24, 0x00	; 0
- 132:	90 40       	sbci	r25, 0x00	; 0
- 134:	e1 f7       	brne	.-8      	; 0x12e <test+0x64>
- 136:	00 c0       	rjmp	.+0      	; 0x138 <test+0x6e>
- 138:	00 00       	nop
- 13a:	7e df       	rcall	.-260    	; 0x38 <setLED.part.0>
- 13c:	81 e0       	ldi	r24, 0x01	; 1
- 13e:	a8 df       	rcall	.-176    	; 0x90 <setMotor>
- 140:	2f ef       	ldi	r18, 0xFF	; 255
- 142:	85 ea       	ldi	r24, 0xA5	; 165
- 144:	9e e0       	ldi	r25, 0x0E	; 14
- 146:	21 50       	subi	r18, 0x01	; 1
- 148:	80 40       	sbci	r24, 0x00	; 0
- 14a:	90 40       	sbci	r25, 0x00	; 0
- 14c:	e1 f7       	brne	.-8      	; 0x146 <test+0x7c>
- 14e:	00 c0       	rjmp	.+0      	; 0x150 <test+0x86>
- 150:	00 00       	nop
- 152:	82 e0       	ldi	r24, 0x02	; 2
- 154:	74 df       	rcall	.-280    	; 0x3e <setLED>
- 156:	82 e0       	ldi	r24, 0x02	; 2
- 158:	9b df       	rcall	.-202    	; 0x90 <setMotor>
- 15a:	2f ef       	ldi	r18, 0xFF	; 255
- 15c:	85 ea       	ldi	r24, 0xA5	; 165
- 15e:	9e e0       	ldi	r25, 0x0E	; 14
- 160:	21 50       	subi	r18, 0x01	; 1
- 162:	80 40       	sbci	r24, 0x00	; 0
- 164:	90 40       	sbci	r25, 0x00	; 0
- 166:	e1 f7       	brne	.-8      	; 0x160 <test+0x96>
- 168:	00 c0       	rjmp	.+0      	; 0x16a <test+0xa0>
- 16a:	00 00       	nop
- 16c:	83 e0       	ldi	r24, 0x03	; 3
- 16e:	67 df       	rcall	.-306    	; 0x3e <setLED>
- 170:	2f ef       	ldi	r18, 0xFF	; 255
- 172:	85 ea       	ldi	r24, 0xA5	; 165
- 174:	9e e0       	ldi	r25, 0x0E	; 14
- 176:	21 50       	subi	r18, 0x01	; 1
- 178:	80 40       	sbci	r24, 0x00	; 0
- 17a:	90 40       	sbci	r25, 0x00	; 0
- 17c:	e1 f7       	brne	.-8      	; 0x176 <test+0xac>
- 17e:	00 c0       	rjmp	.+0      	; 0x180 <test+0xb6>
- 180:	00 00       	nop
- 182:	08 95       	ret
+00000076 <error>:
+  76:	82 b3       	in	r24, 0x12	; 18
+  78:	85 74       	andi	r24, 0x45	; 69
+  7a:	82 bb       	out	0x12, r24	; 18
+  7c:	ab 98       	cbi	0x15, 3	; 21
+  7e:	81 b3       	in	r24, 0x11	; 17
+  80:	85 74       	andi	r24, 0x45	; 69
+  82:	81 bb       	out	0x11, r24	; 17
+  84:	a3 98       	cbi	0x14, 3	; 20
+  86:	c0 e0       	ldi	r28, 0x00	; 0
+  88:	8c 2f       	mov	r24, r28
+  8a:	e1 df       	rcall	.-62     	; 0x4e <setLED>
+  8c:	8f e3       	ldi	r24, 0x3F	; 63
+  8e:	9c e9       	ldi	r25, 0x9C	; 156
+  90:	01 97       	sbiw	r24, 0x01	; 1
+  92:	f1 f7       	brne	.-4      	; 0x90 <error+0x1a>
+  94:	00 c0       	rjmp	.+0      	; 0x96 <error+0x20>
+  96:	00 00       	nop
+  98:	cf 5f       	subi	r28, 0xFF	; 255
+  9a:	c4 30       	cpi	r28, 0x04	; 4
+  9c:	a8 f3       	brcs	.-22     	; 0x88 <error+0x12>
+  9e:	f3 cf       	rjmp	.-26     	; 0x86 <error+0x10>
 
-00000184 <main>:
- 184:	9a df       	rcall	.-204    	; 0xba <initPorts>
- 186:	a1 df       	rcall	.-190    	; 0xca <test>
- 188:	fe cf       	rjmp	.-4      	; 0x186 <main+0x2>
+000000a0 <setMotor>:
+  a0:	92 b3       	in	r25, 0x12	; 18
+  a2:	95 74       	andi	r25, 0x45	; 69
+  a4:	92 bb       	out	0x12, r25	; 18
+  a6:	ab 98       	cbi	0x15, 3	; 21
+  a8:	81 30       	cpi	r24, 0x01	; 1
+  aa:	39 f0       	breq	.+14     	; 0xba <setMotor+0x1a>
+  ac:	18 f0       	brcs	.+6      	; 0xb4 <setMotor+0x14>
+  ae:	82 30       	cpi	r24, 0x02	; 2
+  b0:	51 f4       	brne	.+20     	; 0xc6 <setMotor+0x26>
+  b2:	07 c0       	rjmp	.+14     	; 0xc2 <setMotor+0x22>
+  b4:	82 b3       	in	r24, 0x12	; 18
+  b6:	82 61       	ori	r24, 0x12	; 18
+  b8:	02 c0       	rjmp	.+4      	; 0xbe <setMotor+0x1e>
+  ba:	82 b3       	in	r24, 0x12	; 18
+  bc:	80 6a       	ori	r24, 0xA0	; 160
+  be:	82 bb       	out	0x12, r24	; 18
+  c0:	08 95       	ret
+  c2:	ab 9a       	sbi	0x15, 3	; 21
+  c4:	93 9a       	sbi	0x12, 3	; 18
+  c6:	08 95       	ret
 
-0000018a <_exit>:
- 18a:	f8 94       	cli
+000000c8 <setMUX>:
+  c8:	43 98       	cbi	0x08, 3	; 8
+  ca:	81 30       	cpi	r24, 0x01	; 1
+  cc:	91 05       	cpc	r25, r1
+  ce:	31 f0       	breq	.+12     	; 0xdc <setMUX+0x14>
+  d0:	82 30       	cpi	r24, 0x02	; 2
+  d2:	91 05       	cpc	r25, r1
+  d4:	51 f0       	breq	.+20     	; 0xea <setMUX+0x22>
+  d6:	89 2b       	or	r24, r25
+  d8:	29 f0       	breq	.+10     	; 0xe4 <setMUX+0x1c>
+  da:	08 95       	ret
+  dc:	3a 98       	cbi	0x07, 2	; 7
+  de:	39 98       	cbi	0x07, 1	; 7
+  e0:	38 9a       	sbi	0x07, 0	; 7
+  e2:	06 c0       	rjmp	.+12     	; 0xf0 <setMUX+0x28>
+  e4:	3a 98       	cbi	0x07, 2	; 7
+  e6:	39 98       	cbi	0x07, 1	; 7
+  e8:	02 c0       	rjmp	.+4      	; 0xee <setMUX+0x26>
+  ea:	3a 98       	cbi	0x07, 2	; 7
+  ec:	39 9a       	sbi	0x07, 1	; 7
+  ee:	38 98       	cbi	0x07, 0	; 7
+  f0:	43 9a       	sbi	0x08, 3	; 8
+  f2:	08 95       	ret
 
-0000018c <__stop_program>:
- 18c:	ff cf       	rjmp	.-2      	; 0x18c <__stop_program>
+000000f4 <init_ANALOG_COMPARATOR>:
+  f4:	47 98       	cbi	0x08, 7	; 8
+  f6:	43 9a       	sbi	0x08, 3	; 8
+  f8:	41 9a       	sbi	0x08, 1	; 8
+  fa:	40 98       	cbi	0x08, 0	; 8
+  fc:	80 b7       	in	r24, 0x30	; 48
+  fe:	88 60       	ori	r24, 0x08	; 8
+ 100:	80 bf       	out	0x30, r24	; 48
+ 102:	37 98       	cbi	0x06, 7	; 6
+ 104:	08 95       	ret
+
+00000106 <__vector_16>:
+ 106:	1f 92       	push	r1
+ 108:	0f 92       	push	r0
+ 10a:	0f b6       	in	r0, 0x3f	; 63
+ 10c:	0f 92       	push	r0
+ 10e:	11 24       	eor	r1, r1
+ 110:	2f 93       	push	r18
+ 112:	3f 93       	push	r19
+ 114:	4f 93       	push	r20
+ 116:	5f 93       	push	r21
+ 118:	6f 93       	push	r22
+ 11a:	7f 93       	push	r23
+ 11c:	8f 93       	push	r24
+ 11e:	9f 93       	push	r25
+ 120:	af 93       	push	r26
+ 122:	bf 93       	push	r27
+ 124:	ef 93       	push	r30
+ 126:	ff 93       	push	r31
+ 128:	80 91 60 00 	lds	r24, 0x0060
+ 12c:	82 30       	cpi	r24, 0x02	; 2
+ 12e:	18 f0       	brcs	.+6      	; 0x136 <__vector_16+0x30>
+ 130:	10 92 60 00 	sts	0x0060, r1
+ 134:	03 c0       	rjmp	.+6      	; 0x13c <__vector_16+0x36>
+ 136:	8f 5f       	subi	r24, 0xFF	; 255
+ 138:	80 93 60 00 	sts	0x0060, r24
+ 13c:	80 91 60 00 	lds	r24, 0x0060
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	c2 df       	rcall	.-124    	; 0xc8 <setMUX>
+ 144:	ff 91       	pop	r31
+ 146:	ef 91       	pop	r30
+ 148:	bf 91       	pop	r27
+ 14a:	af 91       	pop	r26
+ 14c:	9f 91       	pop	r25
+ 14e:	8f 91       	pop	r24
+ 150:	7f 91       	pop	r23
+ 152:	6f 91       	pop	r22
+ 154:	5f 91       	pop	r21
+ 156:	4f 91       	pop	r20
+ 158:	3f 91       	pop	r19
+ 15a:	2f 91       	pop	r18
+ 15c:	0f 90       	pop	r0
+ 15e:	0f be       	out	0x3f, r0	; 63
+ 160:	0f 90       	pop	r0
+ 162:	1f 90       	pop	r1
+ 164:	18 95       	reti
+
+00000166 <initPorts>:
+ 166:	81 b3       	in	r24, 0x11	; 17
+ 168:	8a 6b       	ori	r24, 0xBA	; 186
+ 16a:	81 bb       	out	0x11, r24	; 17
+ 16c:	a3 9a       	sbi	0x14, 3	; 20
+ 16e:	87 b3       	in	r24, 0x17	; 23
+ 170:	83 60       	ori	r24, 0x03	; 3
+ 172:	87 bb       	out	0x17, r24	; 23
+ 174:	08 95       	ret
+
+00000176 <main>:
+ 176:	f7 df       	rcall	.-18     	; 0x166 <initPorts>
+ 178:	bd df       	rcall	.-134    	; 0xf4 <init_ANALOG_COMPARATOR>
+ 17a:	10 92 60 00 	sts	0x0060, r1
+ 17e:	80 e0       	ldi	r24, 0x00	; 0
+ 180:	90 e0       	ldi	r25, 0x00	; 0
+ 182:	a2 df       	rcall	.-188    	; 0xc8 <setMUX>
+ 184:	80 e0       	ldi	r24, 0x00	; 0
+ 186:	8c df       	rcall	.-232    	; 0xa0 <setMotor>
+ 188:	5f df       	rcall	.-322    	; 0x48 <setLED.part.0>
+ 18a:	2f ef       	ldi	r18, 0xFF	; 255
+ 18c:	83 ec       	ldi	r24, 0xC3	; 195
+ 18e:	99 e0       	ldi	r25, 0x09	; 9
+ 190:	21 50       	subi	r18, 0x01	; 1
+ 192:	80 40       	sbci	r24, 0x00	; 0
+ 194:	90 40       	sbci	r25, 0x00	; 0
+ 196:	e1 f7       	brne	.-8      	; 0x190 <main+0x1a>
+ 198:	00 c0       	rjmp	.+0      	; 0x19a <main+0x24>
+ 19a:	00 00       	nop
+ 19c:	80 e0       	ldi	r24, 0x00	; 0
+ 19e:	57 df       	rcall	.-338    	; 0x4e <setLED>
+ 1a0:	2f ef       	ldi	r18, 0xFF	; 255
+ 1a2:	83 ec       	ldi	r24, 0xC3	; 195
+ 1a4:	99 e0       	ldi	r25, 0x09	; 9
+ 1a6:	21 50       	subi	r18, 0x01	; 1
+ 1a8:	80 40       	sbci	r24, 0x00	; 0
+ 1aa:	90 40       	sbci	r25, 0x00	; 0
+ 1ac:	e1 f7       	brne	.-8      	; 0x1a6 <main+0x30>
+ 1ae:	00 c0       	rjmp	.+0      	; 0x1b0 <main+0x3a>
+ 1b0:	00 00       	nop
+ 1b2:	4a df       	rcall	.-364    	; 0x48 <setLED.part.0>
+ 1b4:	2f ef       	ldi	r18, 0xFF	; 255
+ 1b6:	83 ec       	ldi	r24, 0xC3	; 195
+ 1b8:	99 e0       	ldi	r25, 0x09	; 9
+ 1ba:	21 50       	subi	r18, 0x01	; 1
+ 1bc:	80 40       	sbci	r24, 0x00	; 0
+ 1be:	90 40       	sbci	r25, 0x00	; 0
+ 1c0:	e1 f7       	brne	.-8      	; 0x1ba <main+0x44>
+ 1c2:	00 c0       	rjmp	.+0      	; 0x1c4 <main+0x4e>
+ 1c4:	00 00       	nop
+ 1c6:	80 e0       	ldi	r24, 0x00	; 0
+ 1c8:	42 df       	rcall	.-380    	; 0x4e <setLED>
+ 1ca:	2f ef       	ldi	r18, 0xFF	; 255
+ 1cc:	83 ec       	ldi	r24, 0xC3	; 195
+ 1ce:	99 e0       	ldi	r25, 0x09	; 9
+ 1d0:	21 50       	subi	r18, 0x01	; 1
+ 1d2:	80 40       	sbci	r24, 0x00	; 0
+ 1d4:	90 40       	sbci	r25, 0x00	; 0
+ 1d6:	e1 f7       	brne	.-8      	; 0x1d0 <main+0x5a>
+ 1d8:	00 c0       	rjmp	.+0      	; 0x1da <main+0x64>
+ 1da:	00 00       	nop
+ 1dc:	82 e0       	ldi	r24, 0x02	; 2
+ 1de:	37 df       	rcall	.-402    	; 0x4e <setLED>
+ 1e0:	2f ef       	ldi	r18, 0xFF	; 255
+ 1e2:	83 ec       	ldi	r24, 0xC3	; 195
+ 1e4:	99 e0       	ldi	r25, 0x09	; 9
+ 1e6:	21 50       	subi	r18, 0x01	; 1
+ 1e8:	80 40       	sbci	r24, 0x00	; 0
+ 1ea:	90 40       	sbci	r25, 0x00	; 0
+ 1ec:	e1 f7       	brne	.-8      	; 0x1e6 <main+0x70>
+ 1ee:	00 c0       	rjmp	.+0      	; 0x1f0 <main+0x7a>
+ 1f0:	00 00       	nop
+ 1f2:	80 e0       	ldi	r24, 0x00	; 0
+ 1f4:	2c df       	rcall	.-424    	; 0x4e <setLED>
+ 1f6:	78 94       	sei
+ 1f8:	80 91 60 00 	lds	r24, 0x0060
+ 1fc:	51 df       	rcall	.-350    	; 0xa0 <setMotor>
+ 1fe:	2a e1       	ldi	r18, 0x1A	; 26
+ 200:	2a 95       	dec	r18
+ 202:	f1 f7       	brne	.-4      	; 0x200 <main+0x8a>
+ 204:	00 c0       	rjmp	.+0      	; 0x206 <main+0x90>
+ 206:	83 e0       	ldi	r24, 0x03	; 3
+ 208:	4b df       	rcall	.-362    	; 0xa0 <setMotor>
+ 20a:	8a e6       	ldi	r24, 0x6A	; 106
+ 20c:	8a 95       	dec	r24
+ 20e:	f1 f7       	brne	.-4      	; 0x20c <main+0x96>
+ 210:	00 c0       	rjmp	.+0      	; 0x212 <main+0x9c>
+ 212:	f2 cf       	rjmp	.-28     	; 0x1f8 <main+0x82>
+
+00000214 <_exit>:
+ 214:	f8 94       	cli
+
+00000216 <__stop_program>:
+ 216:	ff cf       	rjmp	.-2      	; 0x216 <__stop_program>
